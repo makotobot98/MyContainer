@@ -1,4 +1,4 @@
-package com.mako.beans.factory;
+package com.mako.beans.definition;
 
 public interface BeanDefinitionRegistry {
 }

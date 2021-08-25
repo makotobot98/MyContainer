@@ -1,4 +1,6 @@
 package com.mako.beans.factory;
 
-public class DefaultBeanFactory {
+import com.mako.beans.definition.BeanDefinitionRegistry;
+
+public class DefaultBeanFactory extends AbstractBeanFactory implements BeanDefinitionRegistry {
 }

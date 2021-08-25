@@ -1,4 +1,11 @@
 package com.mako.beans.factory;
 
-public class AbstractBeanFactory {
+import com.mako.io.DefaultResourceLoader;
+
+public abstract class AbstractBeanFactory implements BeanFactory {
+
+    @Override
+    public Object getBean(String name) {
+        return null;
+    }
 }
