@@ -1,13 +1,14 @@
 package com.mako.beans.definition;
 
 import com.mako.io.ResourceLoader;
+import org.dom4j.DocumentException;
 
 public interface BeanDefinitionReader {
     /**
      * given a location path to the bean definition files, load the bean definitions using those files into beanFactory
      * @param location string path location to the configuration file
      */
-    void loadBeanDefinitions(String location);
+    void loadBeanDefinitions(String location) throws DocumentException;
 
     /**
      *

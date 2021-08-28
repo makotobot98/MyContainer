@@ -2,6 +2,7 @@ package com.mako.context;
 
 import com.mako.beans.factory.BeanFactory;
 import com.mako.io.DefaultResourceLoader;
+import org.dom4j.DocumentException;
 
 public abstract class AbstractApplicationContext extends DefaultResourceLoader implements BeanFactory,
         ApplicationContext {
@@ -19,7 +20,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
      */
     protected abstract BeanFactory getBeanFactory();
 
-    public void refresh() {
+    public void refresh() throws DocumentException {
 
         //pre process bean factory
         prepareRefresh();
@@ -35,10 +36,12 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
     }
 
     /**
-     * TODO:
-     * initialize beanFactory instance used by the IOC container
+     *
+     * initialize beanFactory instance used by the IOC container, load the bean definitions
+     * in the user specified configuration files. The process of bean definition loading will be
+     * delegated to the beanFactory instance and a BeanDefinitionReader
      */
-    protected abstract void loadBeanFactory();
+    protected abstract void loadBeanFactory() throws DocumentException;
 
     /**
      * TODO: initialize the beanFactory, initialize non-lazy singletons from beanDefinitions

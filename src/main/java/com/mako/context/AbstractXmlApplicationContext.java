@@ -4,6 +4,7 @@ import com.mako.beans.definition.BeanDefinitionReader;
 import com.mako.beans.definition.XmlBeanDefinitionReader;
 import com.mako.beans.factory.BeanFactory;
 import com.mako.beans.factory.DefaultBeanFactory;
+import org.dom4j.DocumentException;
 
 public abstract class AbstractXmlApplicationContext extends AbstractApplicationContext {
 
@@ -16,15 +17,20 @@ public abstract class AbstractXmlApplicationContext extends AbstractApplicationC
     }
 
     @Override
-    protected void loadBeanFactory() {
-        this.beanFactory = new DefaultBeanFactory();
+    protected void loadBeanFactory() throws DocumentException {
+        this.beanFactory = createBeanFactory();
+        //configure a xml bean definition reader
         XmlBeanDefinitionReader beanDefinitionReader = new XmlBeanDefinitionReader();
         beanDefinitionReader.setBeanDefinitionRegistry(beanFactory);
         beanDefinitionReader.setResourceLoader(this);
         loadBeanDefinitions(beanDefinitionReader);
     }
 
-    private void loadBeanDefinitions(XmlBeanDefinitionReader beanDefinitionReader) {
+    private DefaultBeanFactory createBeanFactory() {
+        return new DefaultBeanFactory();
+    }
+
+    private void loadBeanDefinitions(XmlBeanDefinitionReader beanDefinitionReader) throws DocumentException {
         String configLocation = getConfigLocation();
         if (configLocation != null) {
             beanDefinitionReader.loadBeanDefinitions(configLocation);
@@ -32,7 +38,8 @@ public abstract class AbstractXmlApplicationContext extends AbstractApplicationC
     }
 
     /**
-     * returns the xml file path for the configuration file, this method shall be over-written by the subclass
+     * returns the xml file path for the xml configuration file storing the bean definition, this method shall be
+     * over-written by the subclass
      * @return string of path for the xml configuration location
      */
     public String getConfigLocation() {

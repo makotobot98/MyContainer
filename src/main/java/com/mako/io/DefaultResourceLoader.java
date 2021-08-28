@@ -7,7 +7,7 @@ import java.io.InputStream;
 /**
  * Implementation of {@ResourceLoader}
  */
-public class DefaultResourceLoader implements ResourceLoader{
+public class DefaultResourceLoader implements ResourceLoader {
 
     @Override
     public InputStream getResourceAsStream(String path) {

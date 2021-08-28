@@ -1,6 +1,7 @@
 package com.mako.context;
 
 import com.mako.beans.factory.BeanFactory;
+import org.dom4j.DocumentException;
 
 /**
  * subclass of {@AbstractXmlApplicationContext}
@@ -10,7 +11,7 @@ import com.mako.beans.factory.BeanFactory;
 public class SimpleXmlApplicationContext extends AbstractXmlApplicationContext {
     private String configLocation;
 
-    public SimpleXmlApplicationContext(String configLocation) {
+    public SimpleXmlApplicationContext(String configLocation) throws DocumentException {
         this.configLocation = configLocation;
         refresh();
     }
