@@ -1,4 +1,4 @@
 package com.mako.beans.definition;
 
-public class SimpleBeanDefinition implements BeanDefinition {
+public class SimpleBeanDefinition extends AbstractBeanDefinition {
 }

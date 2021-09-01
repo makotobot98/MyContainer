@@ -61,5 +61,11 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
      * @param e
      */
     private void parseBeanDefinition(Element e) {
+
+        //parse className, class
+        //parse attributes(is lazy init, singleton, init-method, destroy-method ... )
+        //parse properties
+            //each property encapsulate in a key-value pair, refer to `PropertyValue` class
+            //a bean definition instance should have a field List<PropertyValue> propertyValues;
     }
 }
