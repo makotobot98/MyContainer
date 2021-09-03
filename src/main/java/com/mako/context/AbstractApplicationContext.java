@@ -20,7 +20,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
      */
     protected abstract BeanFactory getBeanFactory();
 
-    public void refresh() throws DocumentException {
+    public void refresh() throws DocumentException, ClassNotFoundException {
 
         //pre process bean factory
         prepareRefresh();
@@ -41,7 +41,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
      * in the user specified configuration files. The process of bean definition loading will be
      * delegated to the beanFactory instance and a BeanDefinitionReader
      */
-    protected abstract void loadBeanFactory() throws DocumentException;
+    protected abstract void loadBeanFactory() throws DocumentException, ClassNotFoundException;
 
     /**
      * TODO: initialize the beanFactory, initialize non-lazy singletons from beanDefinitions

@@ -11,13 +11,15 @@ public interface BeanDefinition extends AttributeAccessor {
 
     boolean isSingleton();
 
-    String getBeanName();
+    String getBeanId();
 
-    void setBeanName(String name);
+    void setBeanId(String name);
 
     public Class<?> getBeanClass();
 
     public void setBeanClass(Class<?> clazz);
+
+    public void setPropertyValues(PropertyValues propertyValues);
 
     MutablePropertyValues getPropertyValues();
 }

@@ -25,17 +25,17 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
     private static final String BEAN_SINGLETON_ATTR = "singleton";
 
     @Override
-    public void loadBeanDefinitions(String location) throws DocumentException {
+    public void loadBeanDefinitions(String location) throws DocumentException, ClassNotFoundException {
         InputStream is = getResourceLoader().getResourceAsStream(location);
         Document document = new SAXReader().read(is);
         parseXmlDocument(document, getBeanDefinitionRegistry());
     }
 
-    private void parseXmlDocument(Document document, BeanDefinitionRegistry beanDefinitionRegistry) {
+    private void parseXmlDocument(Document document, BeanDefinitionRegistry beanDefinitionRegistry) throws ClassNotFoundException {
         Element rootElement = document.getRootElement();
         parseXmlDocument(rootElement, beanDefinitionRegistry);
     }
-    private void parseXmlDocument(Element rootElement, BeanDefinitionRegistry beanDefinitionRegistry) {
+    private void parseXmlDocument(Element rootElement, BeanDefinitionRegistry beanDefinitionRegistry) throws ClassNotFoundException {
         List<Element> ls = rootElement.elements();
         System.out.println(ls);
 
@@ -67,9 +67,11 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
      * parse a xml <bean></bean> tag
      * @param e
      */
-    private void parseBeanDefinition(Element e) {
+    private void parseBeanDefinition(Element e) throws ClassNotFoundException {
         //parse className, class
         String className = parseBeanClassName(e);
+        //parse the class
+        Class<?> clazz = parseClazz(e);
         //parse bean id
         String beanId = parseBeanId(e);
         //parse attributes(is lazy init, singleton, init-method, destroy-method ... )
@@ -80,10 +82,22 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
         PropertyValues propertyValues = parseBeanProperties(e);
 
         //build a bean definition instance
-        BeanDefinition bd = new SimpleBeanDefinition();
+        BeanDefinition bd = new SimpleBeanDefinition.Builder()
+                .className(className)
+                .beanId(beanId)
+                .attributes(attributes)
+                .propertyValues(propertyValues)
+                .clazz(clazz)
+                .build();
 
         //register bean definition
         registerBeanDefinition(getBeanDefinitionRegistry(), bd);
+    }
+
+    private Class<?> parseClazz(Element e) throws ClassNotFoundException {
+        String className = parseBeanClassName(e);
+        Class<?> clazz = getResourceLoader().getClassLoader().loadClass(className);
+        return clazz;
     }
 
     /**
@@ -100,6 +114,8 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
     }
 
     private void registerBeanDefinition(BeanDefinitionRegistry beanDefinitionRegistry, BeanDefinition bd) {
+        String beanId = bd.getBeanId();
+        beanDefinitionRegistry.registerBeanDefinition(beanId, bd);
     }
 
     /**

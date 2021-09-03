@@ -8,7 +8,7 @@ public interface BeanDefinitionReader {
      * given a location path to the bean definition files, load the bean definitions using those files into beanFactory
      * @param location string path location to the configuration file
      */
-    void loadBeanDefinitions(String location) throws DocumentException;
+    void loadBeanDefinitions(String location) throws DocumentException, ClassNotFoundException;
 
     /**
      *

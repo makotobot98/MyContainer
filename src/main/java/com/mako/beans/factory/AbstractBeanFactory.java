@@ -2,7 +2,7 @@ package com.mako.beans.factory;
 
 import com.mako.io.DefaultResourceLoader;
 
-public abstract class AbstractBeanFactory implements BeanFactory {
+public abstract class AbstractBeanFactory extends DefaultSingletonBeanRegistry implements BeanFactory {
 
     @Override
     public Object getBean(String name) {

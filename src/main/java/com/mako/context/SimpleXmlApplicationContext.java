@@ -11,7 +11,7 @@ import org.dom4j.DocumentException;
 public class SimpleXmlApplicationContext extends AbstractXmlApplicationContext {
     private String configLocation;
 
-    public SimpleXmlApplicationContext(String configLocation) throws DocumentException {
+    public SimpleXmlApplicationContext(String configLocation) throws DocumentException, ClassNotFoundException {
         this.configLocation = configLocation;
         refresh();
     }

@@ -4,54 +4,66 @@ public class AbstractBeanDefinition extends DefaultAttributeAccessor implements 
     private Boolean isLazyInit = false;
     private Boolean isSingleton = false;
     private String className;
+    private PropertyValues propertyValues;
+    private String beanId;
+    private Class<?> clazz;
 
+    @Override
+    public void setPropertyValues(PropertyValues propertyValues) {
+        this.propertyValues = propertyValues;
+    }
 
     @Override
     public void setBeanClassName(String beanClassName) {
+        this.className = beanClassName;
     }
 
     @Override
     public String getBeanClassName() {
-        return null;
+        return this.className;
     }
 
     @Override
     public void setLazyInit(boolean lazyInit) {
-
+        this.isLazyInit = lazyInit;
     }
 
     @Override
     public boolean isLazyInit() {
-        return false;
+        return this.isLazyInit;
     }
 
     @Override
     public boolean isSingleton() {
-        return false;
+        return this.isSingleton;
     }
 
     @Override
-    public String getBeanName() {
-        return null;
+    public String getBeanId() {
+        return this.beanId;
     }
 
     @Override
-    public void setBeanName(String name) {
-
+    public void setBeanId(String name) {
+        this.beanId = name;
     }
 
     @Override
     public Class<?> getBeanClass() {
-        return null;
+        return this.clazz;
     }
 
     @Override
     public void setBeanClass(Class<?> clazz) {
-
+        this.clazz = clazz;
     }
 
     @Override
     public MutablePropertyValues getPropertyValues() {
-        return null;
+        return (MutablePropertyValues) this.propertyValues;
+    }
+
+    public void setIsSingleton(Boolean isSingleton) {
+        this.isSingleton = isSingleton;
     }
 }
