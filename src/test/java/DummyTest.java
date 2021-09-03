@@ -19,7 +19,6 @@ public class DummyTest {
     public void test() throws DocumentException {
         ApplicationContext applicationContext = new SimpleXmlApplicationContext("applicationContext.xml");
     }
-
     @Test
     public void testIO() throws IOException {
         ClassLoader cl = ClassUtils.getClassLoader();
@@ -46,4 +45,3 @@ public class DummyTest {
     }
 }
 
-//file:/C:/Users/13354/projects/IntellijProj/MyContainer/target/classes/com/mako/context/

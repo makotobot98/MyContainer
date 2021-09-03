@@ -9,6 +9,7 @@
     <bean id="beanC" class = "com.mako.annotationBean.BeanC">
         <property name="username" value = "eddie"></property>
         <property name="password" value = "12345"></property>
+        <property name="referenceAttr" ref = "refMe"></property>
     </bean>
 
 </beans>

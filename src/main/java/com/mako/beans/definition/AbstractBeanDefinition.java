@@ -1,6 +1,11 @@
 package com.mako.beans.definition;
 
 public class AbstractBeanDefinition extends DefaultAttributeAccessor implements BeanDefinition {
+    private Boolean isLazyInit = false;
+    private Boolean isSingleton = false;
+    private String className;
+
+
     @Override
     public void setBeanClassName(String beanClassName) {
     }
@@ -43,5 +48,10 @@ public class AbstractBeanDefinition extends DefaultAttributeAccessor implements 
     @Override
     public void setBeanClass(Class<?> clazz) {
 
+    }
+
+    @Override
+    public MutablePropertyValues getPropertyValues() {
+        return null;
     }
 }
