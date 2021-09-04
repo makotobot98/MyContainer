@@ -17,7 +17,7 @@ public abstract class AbstractXmlApplicationContext extends AbstractApplicationC
     }
 
     @Override
-    protected void loadBeanFactory() throws DocumentException, ClassNotFoundException {
+    protected void loadBeanFactory() throws Exception {
         this.beanFactory = createBeanFactory();
         //configure a xml bean definition reader
         XmlBeanDefinitionReader beanDefinitionReader = new XmlBeanDefinitionReader();
@@ -30,7 +30,7 @@ public abstract class AbstractXmlApplicationContext extends AbstractApplicationC
         return new DefaultBeanFactory();
     }
 
-    private void loadBeanDefinitions(XmlBeanDefinitionReader beanDefinitionReader) throws DocumentException, ClassNotFoundException {
+    private void loadBeanDefinitions(XmlBeanDefinitionReader beanDefinitionReader) throws Exception {
         String configLocation = getConfigLocation();
         if (configLocation != null) {
             beanDefinitionReader.loadBeanDefinitions(configLocation);

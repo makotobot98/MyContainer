@@ -11,5 +11,5 @@ public interface NamespaceHandler {
     /**
      * given the xml dom4j element and the parser context, parse the element using namespace handler's specific logic
      */
-    public void parse(Element e, ParserContext parserContext);
+    public void parse(Element e, ParserContext parserContext) throws Exception;
 }

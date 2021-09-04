@@ -25,17 +25,17 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
     private static final String BEAN_SINGLETON_ATTR = "singleton";
 
     @Override
-    public void loadBeanDefinitions(String location) throws DocumentException, ClassNotFoundException {
+    public void loadBeanDefinitions(String location) throws Exception {
         InputStream is = getResourceLoader().getResourceAsStream(location);
         Document document = new SAXReader().read(is);
         parseXmlDocument(document, getBeanDefinitionRegistry());
     }
 
-    private void parseXmlDocument(Document document, BeanDefinitionRegistry beanDefinitionRegistry) throws ClassNotFoundException {
+    private void parseXmlDocument(Document document, BeanDefinitionRegistry beanDefinitionRegistry) throws Exception {
         Element rootElement = document.getRootElement();
         parseXmlDocument(rootElement, beanDefinitionRegistry);
     }
-    private void parseXmlDocument(Element rootElement, BeanDefinitionRegistry beanDefinitionRegistry) throws ClassNotFoundException {
+    private void parseXmlDocument(Element rootElement, BeanDefinitionRegistry beanDefinitionRegistry) throws Exception {
         List<Element> ls = rootElement.elements();
         System.out.println(ls);
 
@@ -55,7 +55,7 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
      * TODO
      * @param e
      */
-    private void parseCustomElement(Element e) {
+    private void parseCustomElement(Element e) throws Exception {
         String elementNameString = e.getName();
         NamespaceHandler handler = CustomNamespaceHandlerFactory.getNamespaceHandler(elementNameString);
         handler.init();

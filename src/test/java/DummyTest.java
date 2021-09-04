@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 
 public class DummyTest {
     @Test
-    public void test() throws DocumentException, ClassNotFoundException {
+    public void test() throws Exception {
         ApplicationContext applicationContext = new SimpleXmlApplicationContext("applicationContext.xml");
     }
     @Test

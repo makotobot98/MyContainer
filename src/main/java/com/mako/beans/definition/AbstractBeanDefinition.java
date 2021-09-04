@@ -2,7 +2,7 @@ package com.mako.beans.definition;
 
 public class AbstractBeanDefinition extends DefaultAttributeAccessor implements BeanDefinition {
     private Boolean isLazyInit = false;
-    private Boolean isSingleton = false;
+    private Boolean isSingleton = true;
     private String className;
     private PropertyValues propertyValues;
     private String beanId;
