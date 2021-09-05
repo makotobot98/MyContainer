@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans>
+    <bean id="beanC" class="com.mako.annotationBean.BeanC">
+        <property name="username" value = "eddie"></property>
+        <property name="password" value = "12345"></property>
+        <property name="phoneNumber" value="111"></property>
+    </bean>
+
+    <bean id="beanA" class="com.mako.annotationBean.BeanA">
+        <property name="beanC" ref="beanC"></property>
+        <property name="id" value="333"></property>
+    </bean>
+</beans>

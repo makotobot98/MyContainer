@@ -1,5 +1,7 @@
 package com.mako.context;
 
-public interface ApplicationContext {
+import com.mako.beans.factory.BeanFactory;
+
+public interface ApplicationContext extends BeanFactory {
     String getApplicationName();
 }

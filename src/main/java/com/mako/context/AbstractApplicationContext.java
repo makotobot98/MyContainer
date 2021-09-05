@@ -10,7 +10,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 
 
     @Override
-    public Object getBean(String name) {
+    public Object getBean(String name) throws Exception {
         return getBeanFactory().getBean(name);
     }
 
@@ -44,11 +44,18 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
     protected abstract void loadBeanFactory() throws DocumentException, ClassNotFoundException, Exception;
 
     /**
-     * TODO: initialize the beanFactory, initialize non-lazy singletons from beanDefinitions
+     * initialize the beanFactory, initialize non-lazy singletons from beanDefinitions,
+     * this will be delegated to the class that's responsible for managing bean definitions
      */
-    private void finishInitializeBeanFactory() {
-
+    private void finishInitializeBeanFactory() throws Exception {
+        preInstantiateSingletons();
     }
+
+    /**
+     * this is the method that subclass that manages the bean definitions should implement,
+     * the container will check all non-lazy initialized singleton bean definitions and initialize them
+     */
+    protected abstract void preInstantiateSingletons() throws Exception;
 
     /**
      * subclass add their custom logic for preprocessing before refresh()

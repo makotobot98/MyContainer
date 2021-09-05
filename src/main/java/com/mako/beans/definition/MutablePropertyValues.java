@@ -12,6 +12,9 @@ import java.util.Spliterator;
 import java.util.Spliterators;
 import java.util.stream.Stream;
 
+/**
+ * class storing a list of property value key-value pairs
+ */
 public class MutablePropertyValues implements PropertyValues {
     private final List<PropertyValue> propertyValueList;
     private Set<String> processedProperties;

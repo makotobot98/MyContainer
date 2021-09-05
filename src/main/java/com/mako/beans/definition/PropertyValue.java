@@ -2,6 +2,13 @@ package com.mako.beans.definition;
 
 import java.util.Objects;
 
+/**
+ * class storing key-value pair property value
+ * - note the usage of this in bean definition:
+ *      - bean property values will either be a string alue or bean reference
+ *      - type conversion will not be performed, meaning a propertyValue will
+ *        only store unconverted property value
+ */
 public class PropertyValue {
     private String name;
 

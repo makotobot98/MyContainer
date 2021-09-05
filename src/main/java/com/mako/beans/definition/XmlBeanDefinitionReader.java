@@ -130,9 +130,12 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
             if (propertyValue != null) {
                 propertyMap.put(propertyName, propertyValue);
             } else {
+                //parse bean reference
                 String propertyReferenceName = property.attributeValue("ref");
-                BeanReference beanReference = new RuntimeBeanReference(propertyReferenceName);
-                propertyMap.put(propertyName, beanReference);
+                if (propertyReferenceName != null) {
+                    BeanReference beanReference = new RuntimeBeanReference(propertyReferenceName);
+                    propertyMap.put(propertyName, beanReference);
+                }
             }
         }
         return new MutablePropertyValues(propertyMap);

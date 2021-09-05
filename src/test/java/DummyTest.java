@@ -16,10 +16,6 @@ import java.util.stream.Collectors;
 
 public class DummyTest {
     @Test
-    public void test() throws Exception {
-        ApplicationContext applicationContext = new SimpleXmlApplicationContext("applicationContext.xml");
-    }
-    @Test
     public void testIO() throws IOException {
         ClassLoader cl = ClassUtils.getClassLoader();
         String packageName = "com.mako.context";
@@ -42,6 +38,12 @@ public class DummyTest {
             // handle the exception
         }
         return null;
+    }
+
+    @Test
+    public void classTypeTest() {
+        System.out.println(String.class.getName());
+        System.out.println(String.class.getTypeName());
     }
 }
 

@@ -7,9 +7,9 @@ import com.mako.annotations.Value;
 @Service(beanId="annotatedBeanF")
 public class AnnotatedBeanF {
     @Autowired
-    AnnotatedBeanE annotatedBeanE;
+    public AnnotatedBeanE annotatedBeanE;
 
-    @Value(value="name of annotated bean F")
+    @Value(value="Kiki")
     public String name;
 
     public String password;

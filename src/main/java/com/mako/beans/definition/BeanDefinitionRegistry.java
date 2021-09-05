@@ -1,5 +1,7 @@
 package com.mako.beans.definition;
 
+import java.util.List;
+
 /**
  * registry class for register bean definition into the IOC container, currently the only
  * implementing class is {@DefaultBeanFactory}
@@ -19,6 +21,7 @@ public interface BeanDefinitionRegistry {
 
     /**
      * return a list of bean definition names stored in the IOC container
+     * @return
      */
-    String[] getBeanDefinitionNames();
+    List<String> getBeanDefinitionNames();
 }

@@ -18,6 +18,11 @@ import java.lang.reflect.Method;
 import java.util.*;
 import java.util.stream.Collectors;
 
+/**
+ * this class performs a component scan in a user specified package and search for annotated bean definitions.
+ * bean definitions will then be loaded to a mapping stored inside the bean factory
+ * - note that field values for a bean will not be performing type casting
+ */
 public class ComponentScanNamespaceHandler implements NamespaceHandler {
     private final String BASE_PACKAGE = "base-package";
     public final String CLASSPATH_ALL_URL_PREFIX = "classpath*:";
@@ -76,13 +81,7 @@ public class ComponentScanNamespaceHandler implements NamespaceHandler {
                 //if user specified field value to be initialized using {@Value}
                 Value fieldValueAnnotation = field.getAnnotation(Value.class);
                 String value = fieldValueAnnotation.value();
-                if (requireTypeConversion(fieldType, value)) {
-                    Method valueOfMethod = fieldType.getMethod("valueOf", String.class);
-                    Object convertedFieldValue = valueOfMethod.invoke(null, value);
-                    propertyValues.add(fieldName, convertedFieldValue);
-                } else {
-                    propertyValues.add(fieldName, value);
-                }
+                propertyValues.add(fieldName, value);
             } else if (field.isAnnotationPresent(Autowired.class)){
                 //if autowired type
                 Autowired autowiredAnnotation = field.getAnnotation(Autowired.class);
@@ -102,10 +101,6 @@ public class ComponentScanNamespaceHandler implements NamespaceHandler {
         }
 
         return propertyValues;
-    }
-
-    private boolean requireTypeConversion(Class<?> fieldType, String valueString) {
-        return !fieldType.equals(String.class);
     }
 
 

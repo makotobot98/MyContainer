@@ -1,10 +1,13 @@
 package com.mako.context;
 
+import com.mako.beans.definition.BeanDefinition;
 import com.mako.beans.definition.BeanDefinitionReader;
 import com.mako.beans.definition.XmlBeanDefinitionReader;
 import com.mako.beans.factory.BeanFactory;
 import com.mako.beans.factory.DefaultBeanFactory;
 import org.dom4j.DocumentException;
+
+import java.util.List;
 
 public abstract class AbstractXmlApplicationContext extends AbstractApplicationContext {
 
@@ -24,6 +27,20 @@ public abstract class AbstractXmlApplicationContext extends AbstractApplicationC
         beanDefinitionReader.setBeanDefinitionRegistry(beanFactory);
         beanDefinitionReader.setResourceLoader(this);
         loadBeanDefinitions(beanDefinitionReader);
+    }
+
+    @Override
+    protected void preInstantiateSingletons() throws Exception {
+        List<String> beanDefinitionNames = beanFactory.getBeanDefinitionNames();
+        for (String beanDefinitionName : beanDefinitionNames) {
+            BeanDefinition bd = beanFactory.getBeanDefinition(beanDefinitionName);
+            //if the bean is singleton and need to be initialized non-lazily
+            if (bd.isSingleton() && !bd.isLazyInit()) {
+                //check if already created
+                String beanName = bd.getBeanId();
+                getBean(beanName);
+            }
+        }
     }
 
     private DefaultBeanFactory createBeanFactory() {

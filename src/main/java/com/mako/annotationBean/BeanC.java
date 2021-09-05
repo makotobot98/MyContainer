@@ -3,7 +3,7 @@ package com.mako.annotationBean;
 public class BeanC {
     public String username;
     public String password;
-
+    public Integer phoneNumber;
     public BeanC() {
 
     }

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans>
+    <bean id="beanB" class="com.mako.annotationBean.BeanB">
+        <property name="beanD" ref="beanD"></property>
+        <property name="id" value="333"></property>
+    </bean>
+    <bean id="beanD" class="com.mako.annotationBean.BeanD">
+            <property name="beanB" ref="beanB"></property>
+            <property name="number" value="666"></property>
+    </bean>
+</beans>
