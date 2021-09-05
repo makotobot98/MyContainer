@@ -13,6 +13,22 @@
 
 ![image-20210905125345805](rsrc/README/image-20210905125345805.png)
 
+测试代码：
+
+```java
+@Test
+public void TestIOCPlainXmlBeanWithCircularDependency() throws Exception {
+    ApplicationContext applicationContext = new SimpleXmlApplicationContext("appContext-PlainXmlWithCircularDependency.xml");
+    BeanB beanB = (BeanB) applicationContext.getBean("beanB");
+    System.out.println(beanB);
+
+    BeanD beanD = (BeanD) applicationContext.getBean("beanD");
+    System.out.println(beanD);
+}
+```
+
+
+
 输出结果：
 
 ![image-20210905124142080](rsrc/README/image-20210905124142080.png)
@@ -22,6 +38,22 @@
 xml配置`component-scan`: 
 
 ![image-20210905132304806](rsrc/README/image-20210905132304806.png)
+
+测试代码：
+
+```java
+@Test
+public void TestIOCWithAnnotation() throws Exception {
+    ApplicationContext applicationContext = new SimpleXmlApplicationContext("appContext-AnnotatedBeanAutowire.xml");
+    AnnotatedBeanE annotatedBeanE = (AnnotatedBeanE) applicationContext.getBean("annotatedBeanE");
+    System.out.println(annotatedBeanE);
+
+    AnnotatedBeanF annotatedBeanF = (AnnotatedBeanF) applicationContext.getBean("annotatedBeanF");
+    System.out.println(annotatedBeanF);
+}
+```
+
+
 
 输出结果：
 
